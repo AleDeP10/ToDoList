@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import uuid from 'react-native-uuid';
-
 import {
   SafeAreaView,
   StatusBar,
@@ -13,6 +11,8 @@ import {
   Image,
   FlatList
 } from 'react-native';
+
+import uuid from 'react-native-uuid';
 
 import Dialog, {
   DialogTitle,
@@ -45,7 +45,7 @@ const App = () => {
     current, setCurrent
   ] = useState(null);
   const [
-    showEditDialog, setShowEditDialog
+    showTaskDialog, setShowTaskDialog
   ] = useState(false);
   const [
     editMode, setEditMode
@@ -95,13 +95,13 @@ const App = () => {
   const addItem = () => {
     setEditMode(false);
     setTaskText('');
-    setShowEditDialog(true);
+    setShowTaskDialog(true);
   };
 
   const editItem = () => {
     if (current !== null) {
       setEditMode(true);
-      setShowEditDialog(true);
+      setShowTaskDialog(true);
     } 
     else {
       setShowErrorDialog(true);
@@ -145,7 +145,7 @@ const App = () => {
 
   const undoChanges = () => {
     setTaskText(editMode ? current.value : '' );
-    setShowEditDialog(false);
+    setShowTaskDialog(false);
   };
 
   const saveOrUpdate = () => {
@@ -169,7 +169,7 @@ const App = () => {
       clone.push(newItem);
     }
     setTaskList(clone);
-    setShowEditDialog(false);
+    setShowTaskDialog(false);
   };
 
 
@@ -258,7 +258,7 @@ const App = () => {
         <Dialog
           onDismiss={() => { undoChanges(); }}
           width={0.9}
-          visible={showEditDialog}
+          visible={showTaskDialog}
           rounded
           actionsBordered
           dialogAnimation={new ScaleAnimation()}
