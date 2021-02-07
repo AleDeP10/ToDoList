@@ -205,7 +205,7 @@ const App = () => {
             style={styles.label}
             onPress={() => setShowChecked(!showChecked)}
           >
-            Display checked tasks
+            Display completed tasks
           </Text>
         </View>
 
